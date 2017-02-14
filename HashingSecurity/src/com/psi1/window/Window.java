@@ -1,4 +1,4 @@
-package com.ps1.window;
+package com.psi1.window;
 
 import java.awt.EventQueue;
 
