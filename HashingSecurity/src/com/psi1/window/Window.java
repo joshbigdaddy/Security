@@ -31,6 +31,7 @@ public class Window {
 	private JTextField textField_1;
 	private JPanel panel1;
 	private JPanel panel2;
+	private GlobalConfiguration config= new GlobalConfiguration("","");
 
 	/**
 	 * Launch the application.
@@ -99,7 +100,8 @@ public class Window {
 		btnExamine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				GlobalConfiguration n=new GlobalConfiguration(textField.getText(), textField_1.getText());
+				config.setConfigurationFile(textField.getText());
+				config.setLogsDirectory(textField_1.getText());
 				panel2.setVisible(true);
 				panel1.setVisible(false);
 			}
@@ -114,6 +116,8 @@ public class Window {
 		JButton btnNewButton = new JButton("Run ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				ExecutionUtilities.RunUtility();
 			}
 		});
 		btnNewButton.setBounds(98, 174, 97, 25);
