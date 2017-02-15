@@ -31,6 +31,7 @@ public class Window {
 	private JTextField textField_1;
 	private JPanel panel1;
 	private JPanel panel2;
+	JLabel lblTimeOfExecution;
 	private GlobalConfiguration config= new GlobalConfiguration("","");
 
 	/**
@@ -94,6 +95,10 @@ public class Window {
 		lblInsertPathOf.setBounds(67, 25, 176, 16);
 		panel1.add(lblInsertPathOf);
 		
+		
+		JLabel lblTimer = new JLabel("00 : 00 : 00");
+		
+		
 		JButton btnExamine = new JButton("Next");
 		btnExamine.setBounds(179, 170, 74, 22);
 		panel1.add(btnExamine);
@@ -104,6 +109,7 @@ public class Window {
 				config.setLogsDirectory(textField_1.getText());
 				panel2.setVisible(true);
 				panel1.setVisible(false);
+				
 			}
 		});
 		
@@ -117,7 +123,9 @@ public class Window {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ExecutionUtilities.RunUtility();
+				ExecutionUtilities.RunUtility(lblTimer);
+				btnNewButton.setEnabled(false);
+				
 			}
 		});
 		btnNewButton.setBounds(98, 174, 97, 25);
@@ -126,6 +134,16 @@ public class Window {
 		JButton btnNewButton_1 = new JButton("Stop");
 		btnNewButton_1.setBounds(231, 174, 97, 25);
 		panel2.add(btnNewButton_1);
+		
+		lblTimeOfExecution = new JLabel("Time of execution");
+		lblTimeOfExecution.setFont(new Font("Arial", Font.BOLD, 18));
+		lblTimeOfExecution.setBounds(127, 26, 176, 16);
+		panel2.add(lblTimeOfExecution);
+		
+		
+		lblTimer.setFont(new Font("Arial", Font.PLAIN, 40));
+		lblTimer.setBounds(98, 79, 264, 68);
+		panel2.add(lblTimer);
 		frmJ.setBounds(100, 100, 450, 300);
 		frmJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
