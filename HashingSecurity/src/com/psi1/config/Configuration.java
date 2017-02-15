@@ -174,6 +174,18 @@ public class Configuration {
 	public void setTiempo(String tiempo) {
 		this.tiempo = tiempo;
 	}
+	public Map<String, String> getHashes() {
+		return hashes;
+	}
+	public void setHashes(Map<String, String> hashes) {
+		this.hashes = hashes;
+	}
+	public GlobalConfiguration getGlobalConfig() {
+		return globalConfig;
+	}
+	public void setGlobalConfig(GlobalConfiguration globalConfig) {
+		this.globalConfig = globalConfig;
+	}
 	
 	
 	
