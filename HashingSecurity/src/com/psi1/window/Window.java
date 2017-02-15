@@ -64,13 +64,8 @@ public class Window {
 		btnExamine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				btnExamine.setLabel("help");
-				GlobalConfiguration n=new GlobalConfiguration();
-				n.setConfigurationFile(textField.getText()); 
-				n.setLogsDirectory(textField_1.getText()); 
-
-				System.out.println(n.getConfigurationFile());
-				System.out.println(n.getLogsDirectory());
+				GlobalConfiguration n=new GlobalConfiguration(textField.getText(), textField_1.getText());
+				
 			}
 		});
 		btnExamine.setBounds(323, 215, 97, 25);
