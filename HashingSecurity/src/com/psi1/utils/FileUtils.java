@@ -43,6 +43,37 @@ public class FileUtils {
 		}
 		return str;
 	}
+	public static String readFile(File file){
+		FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		byte[] data = new byte[(int) file.length()];
+		try {
+			fis.read(data);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fis.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		String str = null;
+		try {
+			str = new String(data, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str;
+	}
 	public static String hashContent(String content,Configuration config){
 		
 			byte[] convertme = null;
@@ -69,4 +100,5 @@ public class FileUtils {
 		  }
 		  return result;
 		}
+	
 }

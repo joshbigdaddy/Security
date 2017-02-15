@@ -9,7 +9,8 @@ import com.psi1.utils.FileUtils;
 public class Testing {
 
 	public static void main(String[] args) {
-		Configuration config=new Configuration("C:\\Users\\ADRIAN\\Desktop\\config.properties");
+		GlobalConfiguration globalConfig=new Configuration("C:\\Users\\ADRIAN\\Desktop\\config.properties","C:\\Users\\ADRIAN\\Desktop\\logsHashingSecurity");
+		Configuration config=new Configuration(globalConfig);
 		Map<String,List<String>> map=config.getProperties();
 		System.out.println(map.keySet());
 		System.out.println(map.values());
