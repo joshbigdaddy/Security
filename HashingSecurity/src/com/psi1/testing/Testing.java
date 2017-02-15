@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.psi1.config.Configuration;
+import com.psi1.config.GlobalConfiguration;
 import com.psi1.utils.FileUtils;
 
 public class Testing {
 
 	public static void main(String[] args) {
-		GlobalConfiguration globalConfig=new Configuration("C:\\Users\\ADRIAN\\Desktop\\config.properties","C:\\Users\\ADRIAN\\Desktop\\logsHashingSecurity");
+		GlobalConfiguration globalConfig=new GlobalConfiguration("C:\\Users\\ADRIAN\\Desktop\\config.properties","C:\\Users\\ADRIAN\\Desktop\\logsHashingSecurity");
 		Configuration config=new Configuration(globalConfig);
 		Map<String,List<String>> map=config.getProperties();
 		System.out.println(map.keySet());
