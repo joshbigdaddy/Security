@@ -11,8 +11,8 @@ import java.security.NoSuchAlgorithmException;
 import com.psi1.config.Configuration;
 
 public class FileUtils {
-	public static String readFile(String directory){
-		File file=new File(directory);
+	public static String readFile(String directory) {
+		File file = new File(directory);
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(file);
@@ -43,7 +43,8 @@ public class FileUtils {
 		}
 		return str;
 	}
-	public static String readFile(File file){
+
+	public static String readFile(File file) {
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(file);
@@ -74,31 +75,31 @@ public class FileUtils {
 		}
 		return str;
 	}
-	public static String hashContent(String content,Configuration config){
-		
-			byte[] convertme = null;
-			try {
-				convertme = content.getBytes("UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		    MessageDigest md = null;
-		    try {
-		        md = MessageDigest.getInstance(config.getAlgoritmo());
-		    }
-		    catch(NoSuchAlgorithmException e) {
-		        e.printStackTrace();
-		    } 
-		    return byteArrayToHexString(md.digest(convertme));
-		
+
+	public static String hashContent(String content, Configuration config) {
+
+		byte[] convertme = null;
+		try {
+			convertme = content.getBytes("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance(config.getAlgoritmo());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return byteArrayToHexString(md.digest(convertme));
+
 	}
+
 	public static String byteArrayToHexString(byte[] b) {
-		  String result = "";
-		  for (int i=0; i < b.length; i++) {
-		    result +=
-		          Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
-		  }
-		  return result;
+		String result = "";
+		for (int i = 0; i < b.length; i++) {
+			result += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
 		}
-	
+		return result;
+	}
+
 }
