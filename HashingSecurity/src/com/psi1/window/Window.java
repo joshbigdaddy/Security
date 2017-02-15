@@ -15,6 +15,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.UIManager;
+
+import com.psi1.config.GlobalConfiguration;
+
 import java.awt.Window.Type;
 
 public class Window {
@@ -62,7 +65,12 @@ public class Window {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				btnExamine.setLabel("help");
-				
+				GlobalConfiguration n=new GlobalConfiguration();
+				n.setConfigurationFile(textField.getText()); 
+				n.setLogsDirectory(textField_1.getText()); 
+
+				System.out.println(n.getConfigurationFile());
+				System.out.println(n.getLogsDirectory());
 			}
 		});
 		btnExamine.setBounds(323, 215, 97, 25);
