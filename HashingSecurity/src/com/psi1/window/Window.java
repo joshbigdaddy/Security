@@ -19,17 +19,28 @@ import javax.swing.UIManager;
 import com.psi1.config.GlobalConfiguration;
 
 import java.awt.Window.Type;
+import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import java.awt.Button;
+import java.awt.CardLayout;
 
 public class Window {
 
 	private JFrame frmJ;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JPanel panel1;
+	private JPanel panel2;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,36 +69,59 @@ public class Window {
 		frmJ.setFont(new Font("Arial", Font.PLAIN, 12));
 		frmJ.setTitle("Security");
 		frmJ.getContentPane().setForeground(Color.BLUE);
-		frmJ.getContentPane().setLayout(null);
+		frmJ.getContentPane().setLayout(new CardLayout(0, 0));
 		
-		JButton btnExamine = new JButton("Run");
+		JPanel panel1 = new JPanel();
+		frmJ.getContentPane().add(panel1, "name_506056528830070");
+		panel1.setLayout(null);
+		
+		JPanel panel2 = new JPanel();
+		frmJ.getContentPane().add(panel2, "name_506056538446282");
+		panel2.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(67, 59, 276, 22);
+		panel1.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(65, 123, 278, 22);
+		panel1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblInsertPathOf = new JLabel("Insert path of configuration file");
+		lblInsertPathOf.setBounds(67, 25, 176, 16);
+		panel1.add(lblInsertPathOf);
+		
+		JButton btnExamine = new JButton("Next");
+		btnExamine.setBounds(179, 170, 74, 22);
+		panel1.add(btnExamine);
 		btnExamine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				GlobalConfiguration n=new GlobalConfiguration(textField.getText(), textField_1.getText());
-				
+				panel2.setVisible(true);
+				panel1.setVisible(false);
 			}
 		});
-		btnExamine.setBounds(323, 215, 97, 25);
-		frmJ.getContentPane().add(btnExamine);
-		
-		textField = new JTextField();
-		textField.setBounds(54, 65, 335, 22);
-		frmJ.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(54, 131, 340, 22);
-		frmJ.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		JLabel lblInsertPathOf = new JLabel("Insert path of configuration file");
-		lblInsertPathOf.setBounds(54, 49, 257, 16);
-		frmJ.getContentPane().add(lblInsertPathOf);
 		
 		JLabel lblInsertLogsDirectory = new JLabel("Insert logs directory");
-		lblInsertLogsDirectory.setBounds(54, 112, 295, 16);
-		frmJ.getContentPane().add(lblInsertLogsDirectory);
+		lblInsertLogsDirectory.setBounds(67, 94, 114, 16);
+		panel1.add(lblInsertLogsDirectory);
+		
+		
+		
+		JButton btnNewButton = new JButton("Run ");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setBounds(98, 174, 97, 25);
+		panel2.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Stop");
+		btnNewButton_1.setBounds(231, 174, 97, 25);
+		panel2.add(btnNewButton_1);
 		frmJ.setBounds(100, 100, 450, 300);
 		frmJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
