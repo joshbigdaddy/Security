@@ -4,23 +4,31 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.UIManager;
 
 import com.psi1.config.GlobalConfiguration;
 import com.psi1.utils.ExecutionUtils;
 
 import java.awt.Window.Type;
+
 import javax.swing.JPanel;
+
 import java.awt.FlowLayout;
 import java.awt.Button;
 import java.awt.CardLayout;
