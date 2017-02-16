@@ -17,6 +17,7 @@ import java.awt.Font;
 import javax.swing.UIManager;
 
 import com.psi1.config.GlobalConfiguration;
+import com.psi1.utils.ExecutionUtils;
 
 import java.awt.Window.Type;
 import javax.swing.JPanel;
@@ -100,7 +101,7 @@ public class Window {
 		
 		
 		JButton btnExamine = new JButton("Next");
-		btnExamine.setBounds(179, 170, 74, 22);
+		btnExamine.setBounds(251, 173, 92, 22);
 		panel1.add(btnExamine);
 		btnExamine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -117,13 +118,19 @@ public class Window {
 		lblInsertLogsDirectory.setBounds(67, 94, 114, 16);
 		panel1.add(lblInsertLogsDirectory);
 		
+		JButton btnHelp = new JButton("Help");
+		btnHelp.setBounds(71, 172, 97, 25);
+		panel1.add(btnHelp);
+		
+		
+		
 		
 		
 		JButton btnNewButton = new JButton("Run ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ExecutionUtilities.RunUtility(lblTimer);
+				ExecutionUtils.RunUtility(lblTimer);
 				btnNewButton.setEnabled(false);
 				
 			}
@@ -144,6 +151,41 @@ public class Window {
 		lblTimer.setFont(new Font("Arial", Font.PLAIN, 40));
 		lblTimer.setBounds(98, 79, 264, 68);
 		panel2.add(lblTimer);
+		
+		JPanel helpPanel = new JPanel();
+		frmJ.getContentPane().add(helpPanel, "name_601527980303771");
+		helpPanel.setLayout(null);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(152, 177, 97, 25);
+		helpPanel.add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				panel2.setVisible(false);
+				panel1.setVisible(true);
+				helpPanel.setVisible(false);
+				
+			}
+		});
+		
+		btnHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				panel2.setVisible(false);
+				panel1.setVisible(false);
+				helpPanel.setVisible(true);
+				
+			}
+		});
+		
+		JLabel lblNewLabel = new JLabel("The Configuration File should be a .properties file.");
+		lblNewLabel.setBounds(66, 55, 287, 16);
+		helpPanel.add(lblNewLabel);
+		
+		JLabel lblTheLogFiles = new JLabel("The Log files are stored in the logs directory file.");
+		lblTheLogFiles.setBounds(66, 103, 287, 16);
+		helpPanel.add(lblTheLogFiles);
 		frmJ.setBounds(100, 100, 450, 300);
 		frmJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
