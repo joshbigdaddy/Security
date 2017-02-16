@@ -25,12 +25,8 @@ import javax.swing.UIManager;
 import com.psi1.config.GlobalConfiguration;
 import com.psi1.utils.ExecutionUtils;
 
-import java.awt.Window.Type;
-
 import javax.swing.JPanel;
 
-import java.awt.FlowLayout;
-import java.awt.Button;
 import java.awt.CardLayout;
 
 public class Window {
@@ -38,10 +34,8 @@ public class Window {
 	private JFrame frmJ;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JPanel panel1;
-	private JPanel panel2;
 	JLabel lblTimeOfExecution;
-	private GlobalConfiguration config = new GlobalConfiguration("", "");
+	private GlobalConfiguration config;
 
 	/**
 	 * Launch the application.
@@ -111,7 +105,7 @@ public class Window {
 		panel1.add(btnExamine);
 		btnExamine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				config = new GlobalConfiguration("", "");
 				config.setConfigurationFile(textField.getText());
 				config.setLogsDirectory(textField_1.getText());
 				panel2.setVisible(true);
@@ -132,7 +126,7 @@ public class Window {
 		JButton btnNewButton_1 = new JButton("Stop");
 		btnNewButton_1.setBounds(231, 174, 97, 25);
 		panel2.add(btnNewButton_1);
-		
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -140,20 +134,17 @@ public class Window {
 				btnNewButton.setEnabled(false);
 				btnNewButton_1.setEnabled(true);
 
-
 			}
 		});
 		btnNewButton.setBounds(98, 174, 97, 25);
 		panel2.add(btnNewButton);
 
-		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				ExecutionUtils.StopUtility();
 				btnNewButton.setEnabled(true);
 				btnNewButton_1.setEnabled(false);
-
 
 			}
 		});
