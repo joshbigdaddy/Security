@@ -22,6 +22,7 @@ import java.awt.Font;
 
 import javax.swing.UIManager;
 
+import com.psi1.config.Configuration;
 import com.psi1.config.GlobalConfiguration;
 import com.psi1.utils.ExecutionUtils;
 
@@ -108,6 +109,7 @@ public class Window {
 				config = new GlobalConfiguration("", "");
 				config.setConfigurationFile(textField.getText());
 				config.setLogsDirectory(textField_1.getText());
+				ExecutionUtils.setConfiguration(new Configuration(config));
 				panel2.setVisible(true);
 				panel1.setVisible(false);
 
