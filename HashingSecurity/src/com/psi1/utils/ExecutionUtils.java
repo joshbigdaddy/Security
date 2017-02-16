@@ -1,4 +1,4 @@
-package com.psi1.window;
+package com.psi1.utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-public class ExecutionUtilities {
+public class ExecutionUtils {
 	private static Timer t;
 	private static Integer hora = 0;
 	private static Integer minuto=0;

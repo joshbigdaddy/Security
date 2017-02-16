@@ -77,7 +77,6 @@ public class FileUtils {
 	}
 
 	public static String hashContent(String content, Configuration config) {
-
 		byte[] convertme = null;
 		try {
 			convertme = content.getBytes("UTF-8");
