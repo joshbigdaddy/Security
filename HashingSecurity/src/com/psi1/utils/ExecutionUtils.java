@@ -13,6 +13,7 @@ public class ExecutionUtils {
 	private static Integer hora = 0;
 	private static Integer minuto = 0;
 	private static Integer segundo = 0;
+	private static Integer dia = 0;
 	private static Configuration configuration;
 	private static Integer timerRepeater = 1000;
 	private static Integer repetitions;
@@ -58,6 +59,10 @@ public class ExecutionUtils {
 					hora++;
 					minuto = 0;
 				}
+				if(hora==24){
+					dia++;
+					hora=0;
+				}
 				updateLabel();
 				repetitions++;
 				if((repetitions%(new Integer(getConfiguration().getTiempo())/timerRepeater))==0){
@@ -68,9 +73,17 @@ public class ExecutionUtils {
 
 			private void updateLabel() {
 				// TODO Auto-generated method stub
-				String time = (hora <= 9 ? "0" : "") + hora + " : " + (minuto <= 9 ? "0" : "") + minuto + " : "
-						+ (segundo <= 9 ? "0" : "") + segundo;
-				lblTimer.setText(time);
+				if(dia>=1){
+					
+					String time = dia +" d "+(hora <= 9 ? "0" : "") + hora + " : " + (minuto <= 9 ? "0" : "") + minuto + " : "
+							+ (segundo <= 9 ? "0" : "") + segundo;
+					lblTimer.setText(time);
+				}else{
+					String time = (hora <= 9 ? "0" : "") + hora + " : " + (minuto <= 9 ? "0" : "") + minuto + " : "
+				+ (segundo <= 9 ? "0" : "") + segundo;
+					lblTimer.setText(time);	
+				}
+				
 			}
 		};
 
