@@ -29,6 +29,7 @@ import com.psi1.utils.ExecutionUtils;
 import javax.swing.JPanel;
 
 import java.awt.CardLayout;
+import javax.swing.JTextPane;
 
 public class Window {
 
@@ -84,6 +85,10 @@ public class Window {
 		JPanel panel2 = new JPanel();
 		frmJ.getContentPane().add(panel2, "name_506056538446282");
 		panel2.setLayout(null);
+		
+		JPanel filesNotCorrectPanel = new JPanel();
+		frmJ.getContentPane().add(filesNotCorrectPanel, "name_856334331178795");
+		filesNotCorrectPanel.setLayout(null);
 
 		textField = new JTextField();
 		textField.setBounds(67, 59, 276, 22);
@@ -106,13 +111,18 @@ public class Window {
 		panel1.add(btnExamine);
 		btnExamine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				config = new GlobalConfiguration("", "");
+				if(textField_1.getText().isEmpty()||textField.getText().isEmpty()){
+					filesNotCorrectPanel.setVisible(true);
+					panel1.setVisible(false);
+				}else{
 				config.setConfigurationFile(textField.getText());
 				config.setLogsDirectory(textField_1.getText());
 				ExecutionUtils.setConfiguration(new Configuration(config));
 				panel2.setVisible(true);
 				panel1.setVisible(false);
-
+				}
 			}
 		});
 
@@ -194,6 +204,23 @@ public class Window {
 		JLabel lblTheLogFiles = new JLabel("The Log files are stored in the logs directory file.");
 		lblTheLogFiles.setBounds(66, 103, 287, 16);
 		helpPanel.add(lblTheLogFiles);
+		
+	
+		
+		JTextPane txtpnPleaseInsertA = new JTextPane();
+		txtpnPleaseInsertA.setBounds(90, 56, 220, 84);
+		txtpnPleaseInsertA.setText("Please, insert a valid directory for the files. If you have any doubt click on Help button.");
+		filesNotCorrectPanel.add(txtpnPleaseInsertA);
+		
+		JButton btnUnderstand = new JButton("Okay, I understand");
+		btnUnderstand.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filesNotCorrectPanel.setVisible(false);
+				panel1.setVisible(true);
+			}
+		});
+		btnUnderstand.setBounds(133, 180, 141, 25);
+		filesNotCorrectPanel.add(btnUnderstand);
 		frmJ.setBounds(100, 100, 450, 300);
 		frmJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
