@@ -1,8 +1,10 @@
 package com.psi1.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -160,6 +162,52 @@ public class FileUtils {
 	}
 	
 	/**
+     *  Method to log a string for the report
+     */
+	public static void reportToFile(String message, Configuration config)
+
+	{
+
+		try {
+			File dataFolder = new File(config.getGlobalConfig().getLogsDirectory()+"\\reports");
+			if (!dataFolder.exists()) {
+				dataFolder.mkdirs();
+			}
+			Date now2 = new Date();
+			SimpleDateFormat formato = new SimpleDateFormat(
+					"yyyy-MM-dd");
+			boolean res=true;
+			File saveTo = new File(config.getGlobalConfig().getLogsDirectory()+"\\reports", formato.format(now2)+"-report.txt");
+			if (!saveTo.exists()) {
+				saveTo.createNewFile();
+				res=false;
+			}
+
+			FileWriter fw = new FileWriter(saveTo, true);
+
+			PrintWriter pw = new PrintWriter(fw);
+			if(!res){
+				pw.println("################################");
+				pw.println("#                              #");
+				pw.println("#            REPORT            #");
+				pw.println("#                              #");
+				pw.println("################################");
+			}
+			pw.println(message);
+
+			pw.flush();
+
+			pw.close();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+	
+	/**
      *  Create the daily log, looking if all the directories/files/webs are correct
      */
 	public static void proveAll(Configuration config)
@@ -182,6 +230,34 @@ public class FileUtils {
 				logToFile(DirectoryUtils.proveWeb(s, config),config);
 			
 		}
+	}
+	
+	/**
+     *  Create the daily report
+     */
+	public static void createDailyReport(Configuration config)
+	{
+		int correct=0;
+		int errors=0;
+		Date now2 = new Date();
+		SimpleDateFormat formato = new SimpleDateFormat(
+				"yyyy-MM-dd");
+		File log = new File(config.getGlobalConfig().getLogsDirectory(), formato.format(now2)+"-log.txt");
+		if(log.exists()){
+			try (BufferedReader br = new BufferedReader(new FileReader(log))) {
+			    String line;
+			    while ((line = br.readLine()) != null) {
+			       if(line.contains("OK ---")){
+			    	  correct++; 
+			       }else if(line.contains("ERROR ---")){
+			    	   errors++;
+			       }
+			    }
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 }
