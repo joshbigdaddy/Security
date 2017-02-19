@@ -19,7 +19,6 @@ public class ExecutionUtils {
 	private static Integer repetitions;
 
 	public static void RunUtility(JLabel lblTimer) {
-		System.out.println("I am functioning");
 		if(t==null){
 		t = new Timer(timerRepeater, clock(lblTimer));
 		repetitions=0;
@@ -28,7 +27,6 @@ public class ExecutionUtils {
 	}
 
 	public static void StopUtility() {
-		System.out.println("I am stopping");
 
 		t.stop();
 	}
@@ -43,6 +41,9 @@ public class ExecutionUtils {
 
 	}
 
+	/**
+     *  Initialize the clock
+     */
 	public static ActionListener clock(JLabel lblTimer) {
 
 		ActionListener action = new ActionListener() {
@@ -70,7 +71,9 @@ public class ExecutionUtils {
 				}
 			
 			}
-
+			/**
+		     *  Update the clock
+		     */
 			private void updateLabel() {
 				// TODO Auto-generated method stub
 				if(dia>=1){

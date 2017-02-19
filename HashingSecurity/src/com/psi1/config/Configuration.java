@@ -26,6 +26,9 @@ public class Configuration {
 	private String tiempo;
 	private GlobalConfiguration globalConfig;
 	
+	/**
+     *  This class have all the variables that we will need to run the application
+     */
 	public Configuration( GlobalConfiguration global) {
 		super();
 		this.dir = global.getConfigurationFile();
@@ -33,6 +36,11 @@ public class Configuration {
 		this.hashes=loadHashes();
 		loadConfig(dir);
 	}
+	
+	
+	/**
+     *  Load Hashes from the logHash.txt found at log directory
+     */
 	public Map<String,String> loadHashes(){
 		String logDir=globalConfig.getLogsDirectory();
 		File hashLog=new File(logDir+"\\logHash.txt");
@@ -56,6 +64,10 @@ public class Configuration {
 		}
 		return hashes;
 	}
+	
+	/**
+     *  Save the logHash.txt when you click on the save button
+     */
 	public void saveHashes(){
 		String logDir=globalConfig.getLogsDirectory();
 		File hashLog=new File(logDir+"\\logHash.txt");
@@ -86,6 +98,10 @@ public class Configuration {
 		pw.close();
 		
 	}
+	
+	/**
+     *  Base64 encode for the hashes saved
+     */
 	public String encode(String s){
 		try {
 			return new String(Base64.encode(s.getBytes("UTF-8")));
@@ -95,6 +111,10 @@ public class Configuration {
 		}
 		return s;
 	}
+	
+	/**
+     *  Base64 decode for the hashes saved
+     */
 	public String decode(String s){
 		try {
 			return new String(Base64.decode(s));
@@ -104,6 +124,10 @@ public class Configuration {
 		}
 		return s;
 	}
+	
+	/**
+     *  Loading all the variables from the configuration file
+     */
 	public void loadConfig(String dir){
 		Map<String,List<String>> map=new HashMap<String,List<String>>();
 		Properties propiedades= new Properties();

@@ -6,7 +6,9 @@ public class GlobalConfiguration {
 	private String configurationFile;
 	private String logsDirectory;
 	
-	
+	/**
+     *  Global Configuration just have the path to the logs directory and the configuration file
+     */
 	public GlobalConfiguration(String configurationFile, String logsDirectory) {
 		super();
 		this.configurationFile = configurationFile;

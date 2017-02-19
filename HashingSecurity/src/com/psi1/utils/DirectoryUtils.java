@@ -11,6 +11,10 @@ import java.util.List;
 import com.psi1.config.Configuration;
 
 public class DirectoryUtils {
+	
+	/**
+     *  Read all files from a directory to see if it has the correct amount of files
+     */
 	public static String readDirectory(String directory, Configuration config) {
 		File folder = new File(directory);
 		File[] files = folder.listFiles();
@@ -28,6 +32,9 @@ public class DirectoryUtils {
 		}
 	}
 
+	/**
+     *  Read the file to see if its hash is correct
+     */
 	public static String proveFile(String directory, String arch,
 			Configuration config) {
 		String dir = directory + "\\" + arch;
@@ -50,6 +57,10 @@ public class DirectoryUtils {
 		}
 
 	}
+	
+	/**
+     *  Read the web to see if its hash is correct
+     */
 	public static String proveWeb(String web,
 			Configuration config) {
 		
@@ -72,6 +83,10 @@ public class DirectoryUtils {
 		}
 
 	}
+	
+	/**
+     *  Method to get the content from a web
+     */
 	public static String getContentFromHtmlPage(String page) {
 		 URL url = null;
 		try {

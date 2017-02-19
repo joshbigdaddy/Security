@@ -17,6 +17,10 @@ import java.util.Set;
 import com.psi1.config.Configuration;
 
 public class FileUtils {
+	
+	/**
+     *  Method to read a file
+     */
 	public static String readFile(String directory) {
 		File file = new File(directory);
 		FileInputStream fis = null;
@@ -50,6 +54,9 @@ public class FileUtils {
 		return str;
 	}
 
+	/**
+     *  Method to read a file
+     */
 	public static String readFile(File file) {
 		FileInputStream fis = null;
 		try {
@@ -82,6 +89,9 @@ public class FileUtils {
 		return str;
 	}
 
+	/**
+     *  Method to hash the content with salt
+     */
 	public static String hashContent(String content, Configuration config) {
 		byte[] convertme = null;
 		try {
@@ -107,6 +117,10 @@ public class FileUtils {
 		}
 		return result;
 	}
+	
+	/**
+     *  Method to log a string
+     */
 	public static void logToFile(String message, Configuration config)
 
 	{
@@ -152,6 +166,10 @@ public class FileUtils {
 		}
 
 	}
+	
+	/**
+     *  Create the daily log, looking if all the directories/files/webs are correct
+     */
 	public static void proveAll(Configuration config)
 	{
 		Set<String> directories=config.getProperties().keySet();
