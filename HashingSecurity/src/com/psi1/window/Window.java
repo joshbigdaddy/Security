@@ -261,6 +261,11 @@ public class Window {
 		JButton button = new JButton("Save and close");
 		button.setBounds(60, 195, 129, 25);
 		securitySave.add(button);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		
 		JLabel label = new JLabel("If you save and close there will be a security vulnerability");
 		label.setBounds(60, 34, 326, 16);
