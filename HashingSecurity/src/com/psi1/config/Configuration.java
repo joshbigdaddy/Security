@@ -56,7 +56,6 @@ public class Configuration {
             	}
             	r.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else{
@@ -76,7 +75,6 @@ public class Configuration {
 			try {
 				hashLog.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -84,7 +82,6 @@ public class Configuration {
 		try {
 			fw = new FileWriter(hashLog, true);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -106,7 +103,6 @@ public class Configuration {
 		try {
 			return new String(Base64.encode(s.getBytes("UTF-8")));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return s;
@@ -119,7 +115,6 @@ public class Configuration {
 		try {
 			return new String(Base64.decode(s));
 		} catch (Base64DecodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return s;

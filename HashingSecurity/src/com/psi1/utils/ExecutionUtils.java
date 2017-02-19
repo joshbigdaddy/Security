@@ -17,7 +17,9 @@ public class ExecutionUtils {
 	private static Configuration configuration;
 	private static Integer timerRepeater = 1000;
 	private static Integer repetitions;
-
+	/**
+     *  Start the clock
+     */
 	public static void RunUtility(JLabel lblTimer) {
 		if(t==null){
 		t = new Timer(timerRepeater, clock(lblTimer));
@@ -25,7 +27,9 @@ public class ExecutionUtils {
 		}
 		t.start();
 	}
-
+	/**
+     *  Stop the clock
+     */
 	public static void StopUtility() {
 
 		t.stop();
@@ -42,7 +46,7 @@ public class ExecutionUtils {
 	}
 
 	/**
-     *  Initialize the clock
+     *  Initialize the clock label
      */
 	public static ActionListener clock(JLabel lblTimer) {
 
@@ -50,7 +54,6 @@ public class ExecutionUtils {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				segundo++;
 				if (segundo == 60) {
 					minuto++;
@@ -75,7 +78,6 @@ public class ExecutionUtils {
 		     *  Update the clock
 		     */
 			private void updateLabel() {
-				// TODO Auto-generated method stub
 				if(dia>=1){
 					
 					String time = dia +" d "+(hora <= 9 ? "0" : "") + hora + " : " + (minuto <= 9 ? "0" : "") + minuto + " : "

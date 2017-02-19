@@ -27,20 +27,17 @@ public class FileUtils {
 		try {
 			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		byte[] data = new byte[(int) file.length()];
 		try {
 			fis.read(data);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
 			fis.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -48,7 +45,6 @@ public class FileUtils {
 		try {
 			str = new String(data, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return str;
@@ -62,20 +58,17 @@ public class FileUtils {
 		try {
 			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		byte[] data = new byte[(int) file.length()];
 		try {
 			fis.read(data);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
 			fis.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -83,7 +76,6 @@ public class FileUtils {
 		try {
 			str = new String(data, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return str;

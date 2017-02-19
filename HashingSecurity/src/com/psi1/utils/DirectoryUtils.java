@@ -92,7 +92,6 @@ public class DirectoryUtils {
 		try {
 			url = new URL(page);
 		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	        BufferedReader in = null;
@@ -100,7 +99,6 @@ public class DirectoryUtils {
 				in = new BufferedReader(
 				new InputStreamReader(url.openStream()));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        String result="";
@@ -109,13 +107,11 @@ public class DirectoryUtils {
 				while ((inputLine = in.readLine()) != null)
 					result+=inputLine;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        try {
 				in.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    
