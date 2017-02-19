@@ -136,8 +136,13 @@ public class Window {
 
 		JButton btnNewButton = new JButton("Run ");
 		JButton btnNewButton_1 = new JButton("Stop");
+		JButton btnNewButton_2 = new JButton("Save");
+		
 		btnNewButton_1.setBounds(231, 174, 97, 25);
 		panel2.add(btnNewButton_1);
+		
+		btnNewButton_2.setBounds(231, 174, 97, 25);
+		panel2.add(btnNewButton_2);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -145,6 +150,11 @@ public class Window {
 				ExecutionUtils.RunUtility(lblTimer);
 				btnNewButton.setEnabled(false);
 				btnNewButton_1.setEnabled(true);
+				btnNewButton_1.setVisible(true);
+				btnNewButton_2.setEnabled(false);
+				btnNewButton_2.setVisible(false);
+				
+
 
 			}
 		});
@@ -157,6 +167,19 @@ public class Window {
 				ExecutionUtils.StopUtility();
 				btnNewButton.setEnabled(true);
 				btnNewButton_1.setEnabled(false);
+				btnNewButton_1.setVisible(false);
+				btnNewButton_2.setEnabled(true);
+				btnNewButton_2.setVisible(true);
+
+
+			}
+		});
+		
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				Popup.popUp();
+
 
 			}
 		});
@@ -169,6 +192,8 @@ public class Window {
 		lblTimer.setFont(new Font("Arial", Font.PLAIN, 40));
 		lblTimer.setBounds(98, 79, 264, 68);
 		panel2.add(lblTimer);
+		
+		
 
 		JPanel helpPanel = new JPanel();
 		frmJ.getContentPane().add(helpPanel, "name_601527980303771");
@@ -225,6 +250,7 @@ public class Window {
 		frmJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

@@ -55,7 +55,7 @@ public class Popup {
 		panel.setLayout(null);
 		
 		JButton btnSaveAndClose = new JButton("Save and close");
-		btnSaveAndClose.setBounds(146, 198, 129, 25);
+		btnSaveAndClose.setBounds(60, 195, 129, 25);
 		panel.add(btnSaveAndClose);
 		
 		JLabel lblIfYouSave = new JLabel("If you save and close there will be a security vulnerability");
@@ -66,5 +66,13 @@ public class Popup {
 		txtpnPleaseDoThis.setText("Please, do this on your own responsibility. If you do not want to generate the report, just close this window.");
 		txtpnPleaseDoThis.setBounds(89, 63, 271, 60);
 		panel.add(txtpnPleaseDoThis);
+		
+		JButton btnNewButton = new JButton("Go back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(263, 198, 97, 25);
+		panel.add(btnNewButton);
 	}
 }
