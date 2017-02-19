@@ -38,6 +38,7 @@ public class Window {
 	private JTextField textField_1;
 	JLabel lblTimeOfExecution;
 	private GlobalConfiguration config;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -90,6 +91,10 @@ public class Window {
 		frmJ.getContentPane().add(filesNotCorrectPanel, "name_856334331178795");
 		filesNotCorrectPanel.setLayout(null);
 
+		JPanel securitySave = new JPanel();
+		securitySave.setLayout(null);
+		frmJ.getContentPane().add(securitySave, "name_863139376486520");
+		
 		textField = new JTextField();
 		textField.setBounds(67, 59, 276, 22);
 		panel1.add(textField);
@@ -178,7 +183,10 @@ public class Window {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Popup.popUp();
+				securitySave.setVisible(true);
+				panel2.setVisible(false);
+				
+
 
 
 			}
@@ -233,6 +241,7 @@ public class Window {
 	
 		
 		JTextPane txtpnPleaseInsertA = new JTextPane();
+		txtpnPleaseInsertA.setEditable(false);
 		txtpnPleaseInsertA.setBounds(90, 56, 220, 84);
 		txtpnPleaseInsertA.setText("Please, insert a valid directory for the files. If you have any doubt click on Help button.");
 		filesNotCorrectPanel.add(txtpnPleaseInsertA);
@@ -246,6 +255,42 @@ public class Window {
 		});
 		btnUnderstand.setBounds(133, 180, 141, 25);
 		filesNotCorrectPanel.add(btnUnderstand);
+		
+		
+		
+		JButton button = new JButton("Save and close");
+		button.setBounds(60, 195, 129, 25);
+		securitySave.add(button);
+		
+		JLabel label = new JLabel("If you save and close there will be a security vulnerability");
+		label.setBounds(60, 34, 326, 16);
+		securitySave.add(label);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setText("Please, do this on your own responsibility. If you do not want to generate the hashes log, just close this window.");
+		textPane.setEditable(false);
+		textPane.setBounds(89, 63, 271, 60);
+		securitySave.add(textPane);
+		
+		JButton button_1 = new JButton("Go back");
+		button_1.setBounds(263, 198, 97, 25);
+		securitySave.add(button_1);
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				securitySave.setVisible(false);
+				panel2.setVisible(true);
+			}
+		});
+		
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(85, 152, 275, 22);
+		securitySave.add(textField_2);
+		
+		JLabel label_1 = new JLabel("Safe directory to save files");
+		label_1.setBounds(83, 136, 213, 16);
+		securitySave.add(label_1);
 		frmJ.setBounds(100, 100, 450, 300);
 		frmJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
