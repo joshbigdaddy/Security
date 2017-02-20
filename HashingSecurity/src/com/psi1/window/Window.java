@@ -38,7 +38,6 @@ public class Window {
 	private JTextField textField_1;
 	JLabel lblTimeOfExecution;
 	private GlobalConfiguration config;
-	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -263,6 +262,7 @@ public class Window {
 		securitySave.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ExecutionUtils.getConfiguration().saveHashes();
 				System.exit(0);
 			}
 		});
@@ -286,16 +286,6 @@ public class Window {
 				panel2.setVisible(true);
 			}
 		});
-		
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(85, 152, 275, 22);
-		securitySave.add(textField_2);
-		
-		JLabel label_1 = new JLabel("Safe directory to save files");
-		label_1.setBounds(83, 136, 213, 16);
-		securitySave.add(label_1);
 		frmJ.setBounds(100, 100, 450, 300);
 		frmJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
