@@ -291,7 +291,12 @@ public class FileUtils {
 		int errors = 0;
 		int total = 0;
 		Date now2 = new Date();
-		if (now2.getDay() == 1) {
+
+		    Calendar cal = Calendar.getInstance();
+		    cal.setTime(now2);
+
+		    int day = cal.get(Calendar.DAY_OF_MONTH);
+		if (day == 1) {
 			createMonthlyReport(config);
 		}
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -328,37 +333,48 @@ public class FileUtils {
 	public static void createMonthlyReport(Configuration config) {
 		double ratio=0.;
 		int total=0;
+		Date fecha=new Date();
 		Calendar cal = Calendar.getInstance();
+		cal.setTime(fecha);
 		cal.add(Calendar.MONTH, -1);
-		Date date = cal.getTime();
-		int month = date.getMonth() + 1;
+		 int year = cal.get(Calendar.YEAR);
+		 int month = cal.get(Calendar.MONTH)+1;
+		System.out.println(month);
 		for (int i = 0; i < 32; i++) {
 			File log = null;
 			if (i < 10) {
 				if (month < 10) {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", date.getYear() + "-0" + month
+							+ "\\dailyreports", year + "-0" + month
+							+ "-0" + i + "-report.txt");
+					System.out.println(year + "-0" + month
 							+ "-0" + i + "-report.txt");
 				} else {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", date.getYear() + "-" + month
+							+ "\\dailyreports", year + "-" + month
+							+ "-0" + i + "-report.txt");
+					System.out.println(year + "-" + month
 							+ "-0" + i + "-report.txt");
 				}
 
 			} else {
 				if (month < 10) {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", date.getYear() + "-0" + month
+							+ "\\dailyreports", year + "-0" + month
+							+ "-" + i + "-report.txt");
+					System.out.println(year + "-0" + month
 							+ "-" + i + "-report.txt");
 				} else {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", date.getYear() + "-" + month
+							+ "\\dailyreports", year + "-" + month
+							+ "-" + i + "-report.txt");
+					System.out.println(year + "-" + month
 							+ "-" + i + "-report.txt");
 				}
 			}
 			if (log != null) {
 				if (log.exists()) {
-					reportToFileMonthly("#Checking log: "+date.getYear() + "-" + month
+					reportToFileMonthly("#Checking log: "+year + "-" + month
 							+ "-" + i + "-report.txt",config);
 					try (BufferedReader br = new BufferedReader(new FileReader(log))) { //Reading line by line the daily report to find the ratio
 						String line;
