@@ -44,13 +44,14 @@ public class Configuration {
 	public Map<String,String> loadHashes(){
 		String logDir=globalConfig.getLogsDirectory();
 		File hashLog=new File(logDir+"\\logHash.txt");
+		hashes=new HashMap<String,String>();
 		if(hashLog.exists()){
 			BufferedReader r;
 			try {
 				r = new BufferedReader(new FileReader(hashLog));
 				String line;
             	while((line = r.readLine()) != null) {
-            		String linea=decode(line);
+            		String linea=line;
                 	String[] palabras=linea.split(";");
                 	hashes.put(palabras[0], palabras[1]);
             	}
@@ -58,9 +59,8 @@ public class Configuration {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else{
-			hashes=new HashMap<String,String>();
 		}
+		hashLog.delete();
 		return hashes;
 	}
 	
@@ -69,9 +69,12 @@ public class Configuration {
      */
 	public void saveHashes(){
 		String logDir=globalConfig.getLogsDirectory();
+		File logs=new File(logDir);
 		File hashLog=new File(logDir+"\\logHash.txt");
+		if(!logs.exists()){
+			logs.mkdirs();
+		}
 		if(!hashLog.exists()){
-			hashLog.mkdirs();
 			try {
 				hashLog.createNewFile();
 			} catch (IOException e) {
@@ -87,7 +90,7 @@ public class Configuration {
 
 		PrintWriter pw = new PrintWriter(fw);
 		for(String s:hashes.keySet()){
-		pw.println(encode(s+";"+hashes.get(s)));
+		pw.println((s+";"+hashes.get(s)));
 		}
 
 		pw.flush();
