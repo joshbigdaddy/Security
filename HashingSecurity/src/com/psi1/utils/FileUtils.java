@@ -339,7 +339,6 @@ public class FileUtils {
 		cal.add(Calendar.MONTH, -1);
 		 int year = cal.get(Calendar.YEAR);
 		 int month = cal.get(Calendar.MONTH)+1;
-		System.out.println(month);
 		for (int i = 0; i < 32; i++) {
 			File log = null;
 			if (i < 10) {
@@ -347,14 +346,12 @@ public class FileUtils {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
 							+ "\\dailyreports", year + "-0" + month
 							+ "-0" + i + "-report.txt");
-					System.out.println(year + "-0" + month
-							+ "-0" + i + "-report.txt");
+
 				} else {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
 							+ "\\dailyreports", year + "-" + month
 							+ "-0" + i + "-report.txt");
-					System.out.println(year + "-" + month
-							+ "-0" + i + "-report.txt");
+
 				}
 
 			} else {
@@ -362,14 +359,12 @@ public class FileUtils {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
 							+ "\\dailyreports", year + "-0" + month
 							+ "-" + i + "-report.txt");
-					System.out.println(year + "-0" + month
-							+ "-" + i + "-report.txt");
+
 				} else {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
 							+ "\\dailyreports", year + "-" + month
 							+ "-" + i + "-report.txt");
-					System.out.println(year + "-" + month
-							+ "-" + i + "-report.txt");
+
 				}
 			}
 			if (log != null) {
