@@ -46,7 +46,7 @@ public class Window {
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		} catch (Throwable e) {
-			e.printStackTrace();
+			
 		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -54,7 +54,7 @@ public class Window {
 					Window window = new Window();
 					window.frmJ.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					
 				}
 			}
 		});

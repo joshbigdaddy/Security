@@ -34,21 +34,23 @@ public class FileUtils {
 		}
 		byte[] data = new byte[(int) file.length()];
 		try {
-			fis.read(data);
+			if (fis != null)
+				fis.read(data);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		try {
-			fis.close();
+			if (fis != null)
+				fis.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 
 		String str = null;
 		try {
 			str = new String(data, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			
 		}
 		return str;
 	}
@@ -65,21 +67,23 @@ public class FileUtils {
 		}
 		byte[] data = new byte[(int) file.length()];
 		try {
-			fis.read(data);
+			if (fis != null)
+				fis.read(data);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		try {
-			fis.close();
+			if (fis != null)
+				fis.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 
 		String str = null;
 		try {
 			str = new String(data, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			
 		}
 		return str;
 	}
@@ -93,15 +97,19 @@ public class FileUtils {
 			content = content + "A>0@3%`sx4bvP35YuAe|";
 			convertme = content.getBytes("UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			
 		}
 		MessageDigest md = null;
 		try {
 			md = MessageDigest.getInstance(config.getAlgoritmo());
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			
 		}
-		return byteArrayToHexString(md.digest(convertme));
+		String res = "";
+		if (convertme != null) {
+			res = byteArrayToHexString(md.digest(convertme));
+		}
+		return res;
 
 	}
 
@@ -157,7 +165,7 @@ public class FileUtils {
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			
 
 		}
 
@@ -204,12 +212,12 @@ public class FileUtils {
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			
 
 		}
 
 	}
-	
+
 	/**
 	 * Method to log a string for the montly report
 	 */
@@ -251,7 +259,7 @@ public class FileUtils {
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			
 
 		}
 
@@ -292,10 +300,10 @@ public class FileUtils {
 		int total = 0;
 		Date now2 = new Date();
 
-		    Calendar cal = Calendar.getInstance();
-		    cal.setTime(now2);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(now2);
 
-		    int day = cal.get(Calendar.DAY_OF_MONTH);
+		int day = cal.get(Calendar.DAY_OF_MONTH);
 		if (day == 1) {
 			createMonthlyReport(config);
 		}
@@ -305,7 +313,7 @@ public class FileUtils {
 		if (log.exists()) {
 			try (BufferedReader br = new BufferedReader(new FileReader(log))) {
 				String line;
-				while ((line = br.readLine()) != null) {
+				while ((line = readLine(br)) != null) {
 					if (line.contains("OK ---")) {
 						correct++;
 						total++;
@@ -315,7 +323,7 @@ public class FileUtils {
 					}
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				
 			}
 			reportToFile("Total checks = " + total, config);
 			reportToFile("OK = " + correct, config);
@@ -326,76 +334,100 @@ public class FileUtils {
 		}
 
 	}
-
+	/**
+	 * Read a line
+	 */
+	public static String readLine(BufferedReader br) throws IOException{
+		StringBuffer sb=new StringBuffer();
+		int intC;
+		intC=br.read();
+		String line=null;
+		do{
+			if(intC==-1)
+				return null;
+			char c=(char) intC;
+			if(c=='\n'){
+				break;
+			}
+			if(sb.length()>=1000000){
+				throw new IOException("input too long");
+			}
+			sb.append(c);
+		} while(((intC=br.read())!=-1));
+		line=sb.toString();
+		return line;
+		}
+	
 	/**
 	 * Create the monthly report
 	 */
 	public static void createMonthlyReport(Configuration config) {
-		double ratio=0.;
-		int total=0;
-		Date fecha=new Date();
+		double ratio = 0.;
+		int total = 0;
+		Date fecha = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(fecha);
 		cal.add(Calendar.MONTH, -1);
-		 int year = cal.get(Calendar.YEAR);
-		 int month = cal.get(Calendar.MONTH)+1;
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
 		for (int i = 0; i < 32; i++) {
 			File log = null;
 			if (i < 10) {
 				if (month < 10) {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", year + "-0" + month
-							+ "-0" + i + "-report.txt");
+							+ "\\dailyreports", year + "-0" + month + "-0" + i
+							+ "-report.txt");
 
 				} else {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", year + "-" + month
-							+ "-0" + i + "-report.txt");
+							+ "\\dailyreports", year + "-" + month + "-0" + i
+							+ "-report.txt");
 
 				}
 
 			} else {
 				if (month < 10) {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", year + "-0" + month
-							+ "-" + i + "-report.txt");
+							+ "\\dailyreports", year + "-0" + month + "-" + i
+							+ "-report.txt");
 
 				} else {
 					log = new File(config.getGlobalConfig().getLogsDirectory()
-							+ "\\dailyreports", year + "-" + month
-							+ "-" + i + "-report.txt");
+							+ "\\dailyreports", year + "-" + month + "-" + i
+							+ "-report.txt");
 
 				}
 			}
 			if (log != null) {
 				if (log.exists()) {
-					reportToFileMonthly("#Checking log: "+year + "-" + month
-							+ "-" + i + "-report.txt",config);
-					try (BufferedReader br = new BufferedReader(new FileReader(log))) { //Reading line by line the daily report to find the ratio
+					reportToFileMonthly("#Checking log: " + year + "-" + month
+							+ "-" + i + "-report.txt", config);
+					try (BufferedReader br = new BufferedReader(new FileReader(
+							log))) { // Reading line by line the daily report to
+										// find the ratio
 						String line;
-						while ((line = br.readLine()) != null) {
+						while ((line = readLine(br)) != null) {
 							if (line.contains("Ratio")) {
-								reportToFileMonthly(line,config);
-								String[] linea=line.split("=");
-								double ratioLinea=new Double(linea[1]);
-								ratio+=ratioLinea;
+								reportToFileMonthly(line, config);
+								String[] linea = line.split("=");
+								double ratioLinea = new Double(linea[1]);
+								ratio += ratioLinea;
 								total++;
 								break;
 							}
 						}
 					} catch (IOException e) {
-						e.printStackTrace();
+						
 					}
-					
+
 				}
 			}
 		}
-		double totalRatio=ratio/total;
-		reportToFileMonthly("################",config);
-		reportToFileMonthly("Monthly Ratio = "+totalRatio,config);
-		reportToFileMonthly("################",config);
+		double totalRatio = ratio / total;
+		reportToFileMonthly("################", config);
+		reportToFileMonthly("Monthly Ratio = " + totalRatio, config);
+		reportToFileMonthly("################", config);
 
-		
 	}
 
 }
